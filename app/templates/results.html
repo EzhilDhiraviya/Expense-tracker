@@ -1,0 +1,51 @@
+<!-- app/templates/results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Details</title>
+    <style>
+        /* Add any custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Details</h1>
+        <ul>
+            {% for document in documents %}
+            <li>
+                <strong>ID:</strong> {{ document['ID'] }}<br>
+                <strong>Expense Name:</strong> {{ document['Expense-Name'] }}<br>
+                <strong>Category:</strong> {{ document['Expense-category'] }}<br>
+                <strong>Amount:</strong> ${{ document['Amount'] }}<br>
+                <!-- Add more fields as needed -->
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

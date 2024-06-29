@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask,render_template
 from flask_cors import CORS
 
 app=Flask(__name__)
 CORS(app)
 
-from .routes import fetch
+from .routes import fetch, add,check
+
 if __name__ == '__main__':
     app.run(debug=True) 

@@ -1,6 +1,6 @@
 from .. import db as d
 from .. import app
-from flask import request , jsonify
+from flask import request , jsonify, render_template
 
 @app.post('/fetch')
 def fetch():
@@ -15,6 +15,9 @@ def fetch():
             doc['UpdatedAt'] = doc['UpdatedAt'].as_datetime()
             doc.pop('_id',None)
             documents.append(doc)
-        return jsonify(documents), 200
+        print(documents)
+        return render_template('results.html', documents=documents)
+        # return jsonify(documents)
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
