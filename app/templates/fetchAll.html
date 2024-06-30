@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+</head>
+<body>
+    <h1>Expenses</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Expense Name</th>
+                <th>Expense Category</th>
+                <th>Expense Amount</th>
+                <th>Expense Date</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.ID }}</td>
+                <td>{{ expense['Expense Name'] }}</td>
+                <td>{{ expense['Expense Category'] }}</td>
+                <td>{{ expense['Expense Amount'] }}</td>
+                <td>{{ expense['Expense Date'] }}</td>
+                <td>{{ expense.CreatedAt }}</td>
+                <td>{{ expense.UpdatedAt }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

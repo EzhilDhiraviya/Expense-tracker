@@ -3,7 +3,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 # uri = "mongodb+srv://ezhildhiraviya:TbdZoOXC4WovYQgO@exp-cluster.fmzwmi5.mongodb.net/?appName=exp-cluster"
-uri = os.getenv('MONGODB_URI') #final
+uri = os.getenv('MONGODB_URI') 
 db=None
 
 # Create a new client and connect to the server
