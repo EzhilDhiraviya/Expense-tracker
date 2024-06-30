@@ -1,20 +1,32 @@
 from flask import Flask, request, jsonify
+from datetime import datetime
 from .. import db as d
 from .. import app
 students = []
 
 @app.route('/add', methods=['POST'])
 def add_user():
-    # try:
-        # Get data from the form
-        name = request.form.get('name')
-        age = int(request.form.get('age'))  # Assuming age is an integer
-        collection=d.db['user-exp-collection']
-        # Insert data into MongoDB
-        user_data = {'name': name, 'age': age}
-        result = collection.insert_one(user_data)
+    try:
+        if request.method == 'POST':
+            id=request.form.get('ID')
+            expDate=request.form.get('date')
+            expAmount=float(request.form.get('amount'))
+            expCategory=request.form.get('category')
+            expName = request.form.get('name')
+            collection=d.db['user-exp-collection']
 
-        return jsonify({'message': 'User added successfully', 'inserted_id': str(result.inserted_id)})
+            user_data = {
+                            'ID': id,
+                            'Expense Name': expName,
+                            'Expense Category': expCategory,
+                            'Expense Amount': expAmount,
+                            'Expense Date': expDate,
+                            'CreatedAt': datetime.now(),
+                            'UpdatedAt': datetime.now()                    
+                        }
+            result = collection.insert_one(user_data)
 
-    # except Exception as e:
-    #     return jsonify({'error': str(e)}), 500
+            return jsonify({'message': 'User added successfully', 'inserted_id': str(result.inserted_id)})
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
