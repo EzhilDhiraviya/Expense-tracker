@@ -1,9 +1,8 @@
 from flask import Flask, request, jsonify, render_template_string
 from datetime import datetime
-from .. import db as d  # Assuming `db` is correctly imported
-from .. import app  # Assuming `app` is correctly imported
+from .. import db as d  
+from .. import app  
 
-# Remove global `students` list if not used
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -13,11 +12,9 @@ def update():
         if request.method == 'POST':
             id = int(request.form.get('ID'))
 
-            # Fetch existing document to update
             existing_expense = collection.find_one({'ID': id})
 
             if existing_expense:
-                # Update fields based on form data, if provided
                 if request.form.get('date'):
                     existing_expense['Expense-date'] = request.form.get('date')
                 if request.form.get('amount'):
@@ -29,10 +26,8 @@ def update():
 
                 existing_expense['UpdatedAt'] = datetime.now()
 
-                # Delete existing document
                 collection.delete_one({'ID': id})
 
-                # Insert updated document
                 result = collection.insert_one(existing_expense)
 
                 return render_template_string('''
