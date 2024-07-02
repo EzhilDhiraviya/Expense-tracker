@@ -4,17 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
+    <style>
+        #deleteContainer, #updateContainer, #addContainer, #categoryContainer, #monthContainer{
+            display: none;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        form label {
+                width: calc(100% - 22px);
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+        }
+
+        form input,
+        form select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form input[type="submit"],
+        form button {
+            width: auto;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        form input[type="submit"]:hover,
+        form button:hover {
+            background-color: #2980b9;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+    </style>
 </head>
 <body>
-    <a href="/check">Add Expense</a>
+    <a href="add" id="addLink">Add Expense</a>
+    
+    <div id="addContainer">
+        <form action="/add" method="POST">
+            <label for="ID">ID:</label><br>
+            <input type="number" id="ID" name="ID" required><br><br>
+            
+            <label for="name">Expense Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+    
+            <label for="category">Category</label>
+            <select name="category" id="category" required>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Rent">Rent</option>
+                <option value="Education">Education</option>
+            </select><br><br>
+    
+            <label for="amount">Amount:</label><br>
+            <input type="text" id="amount" name="amount" required><br><br>
+    
+            <label for="date">Expense Date:</label><br>
+            <input type="date" id="date" name="date" required><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <br><br>
+
+
+    <a href="update" id="updateLink">Update Expense</a>
+
+    <div id = "updateContainer">
+    <form action="/update" method="POST">
+        <label for="ID">ID:</label><br>
+        <input type="number" id="ID" name="ID" required><br><br>
+        
+        <label for="name">Expense Name:</label><br>
+        <input type="text" id="name" name="name" ><br><br>
+
+        <label for="category">Expense Category:</label><br>
+        <input type="text" id="category" name="category" ><br><br>
+
+        <label for="amount">Amount:</label><br>
+        <input type="text" id="amount" name="amount" ><br><br>
+
+        <label for="date">Expense Date:</label><br>
+        <input type="date" id="date" name="date" ><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+    <br><br>
+
+
+    <a href="delete" id="deleteLink">Delete Expense</a>
+
+    <div id="deleteContainer">
+        <form action="/deleteID" method="POST">
+            <label for="ID">ID:</label><br>
+            <input type="number" id="ID" name="ID" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <br><br>
+
     <a href="/fetchAll">Display all Expenses</a>
     <br><br>
-    <a href="/update">Edit Expense</a>
+
+
+    <a href="#" id="categoryLink">List expense based on category</a>
+
+    <div id="categoryContainer">
+        <form action="/fetchCategory" method="POST">
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Rent">Rent</option>
+                <option value="Education">Education</option>
+            </select><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
     <br><br>
-    <a href="/delete">Delete Expense</a>
+
+
+    <a href="/#" id="monthLink">List expense based on Month and Year</a>
+
+    <div id="monthContainer">
+        <form action="/fetchMonth" method="POST">
+            <label for="month">Month:</label>
+            <select name="month" id="month" required>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select><br><br>
+    
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="1900" max="2024" required><br><br>
+    
+            <input type="submit" value="Fetch Expenses">
+        </form>
+    </div>
     <br><br>
-    <a href="/listCategory">List expeense based on category</a>
-    <br><br>
+    
+
+<script>
+
+    document.getElementById('addLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('addContainer').style.display = 'block';
+    });
+
+    document.getElementById('deleteLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('deleteContainer').style.display = 'block';
+    });
+
+    document.getElementById('updateLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('updateContainer').style.display = 'block';
+    });
+
+    document.getElementById('categoryLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('categoryContainer').style.display = 'block';
+    });
+
+    document.getElementById('monthLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('monthContainer').style.display = 'block';
+    });
+
+    
+
+</script>
 </body>
 </html>

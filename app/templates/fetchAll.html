@@ -4,9 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expenses</title>
+    <style>
+        
+body, h1, table {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; 
+}
+
+#allExpenses {
+    background-color: #fff; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 80%;
+    max-width: 1000px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+    </style>
 </head>
 <body>
-    <h1>Expenses</h1>
+    <div id="allExpenses">
+    <h1>List of all Expenses</h1>
     <table border="1">
         <thead>
             <tr>
@@ -23,15 +76,16 @@
             {% for expense in expenses %}
             <tr>
                 <td>{{ expense.ID }}</td>
-                <td>{{ expense['Expense Name'] }}</td>
-                <td>{{ expense['Expense Category'] }}</td>
-                <td>{{ expense['Expense Amount'] }}</td>
-                <td>{{ expense['Expense Date'] }}</td>
+                <td>{{ expense['Expense-name'] }}</td>
+                <td>{{ expense['Expense-category'] }}</td>
+                <td>{{ expense['Amount'] }}</td>
+                <td>{{ expense['Expense-date'] }}</td>
                 <td>{{ expense.CreatedAt }}</td>
                 <td>{{ expense.UpdatedAt }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
 </body>
 </html>
