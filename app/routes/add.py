@@ -9,7 +9,7 @@ students = []
 def addExpense():
     try:
         if request.method == 'POST':
-            id = request.form.get('ID')
+            id = int(request.form.get('ID'))
             expDate = request.form.get('date')
             expAmount = float(request.form.get('amount'))
             expCategory = request.form.get('category')

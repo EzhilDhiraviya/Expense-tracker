@@ -29,7 +29,6 @@
             width: 100%;
             max-width: 500px;
             margin-bottom: 20px;
-            text-align: center;
         }
 
         h1 {
@@ -68,6 +67,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            text-align: left;
         }
 
         form input,
@@ -110,7 +110,7 @@
         
         <div id="addContainer">
             <form action="/add" method="POST">
-                <label for="ID">ID:</label><br>
+                <label for="ID" >ID:</label><br>
                 <input type="number" id="ID" name="ID" required><br><br>
                 
                 <label for="name">Expense Name:</label><br>
