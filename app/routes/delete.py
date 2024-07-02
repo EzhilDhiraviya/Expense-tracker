@@ -5,7 +5,7 @@ from flask import request , jsonify, render_template, render_template_string
 @app.post('/deleteID')
 def deleteID():
     try:
-        id = request.form.get('ID')
+        id = int(request.form.get('ID'))
         collection=d.db['user-exp-collection']
         collection.delete_one({'ID':id})
         return render_template_string('''
